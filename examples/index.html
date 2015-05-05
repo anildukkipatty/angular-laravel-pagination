@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="TestApp">
+<head>
+	<title>Backbone app</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-controller="MainCtrl">
+	
+	<div class="container">
+		<div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>NAME</th>
+						<th>EMAIL</th>
+						<th>ACTIONS</th>
+					</tr>
+				</thead>
+				<tbody class="items">
+					<tr ng-repeat="user in data">
+						<td>{{user.name}}</td>
+						<td>{{user.email}}</td>
+						<td><button class="btn btn-default btn-xs">ACTION</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<paginate data="data" url="url"></paginate>
+		</div>
+	</div>
+	
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-resource/angular-resource.js"></script>
+	<script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
+	<script src="../pagination.js"></script>
+
+	<script>
+		angular.module('TestApp', ['ngResource', 'Paginator'])
+		.controller('MainCtrl', ['$scope', function ($scope) {
+			$scope.url = 'http://tool.gensplash.com/users';
+		}]);
+
+	</script>
+</body>
+</html>
